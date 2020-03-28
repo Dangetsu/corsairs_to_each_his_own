@@ -240,6 +240,12 @@ void GenerateMaps(aref ch, int iProbability1, int iProbability2)
 	if(rand(iProbability1) == 1 && !CheckMainHeroMap("map_cumana")) AddItems(ch, "map_cumana", 1);
 }
 
+int RandByPersonRank(int baseCoefficient)
+{
+	int rank = sti(PChar.rank);
+	return rank + drand(baseCoefficient);
+}
+
 void GiveItemToTrader(aref ch)
 {
 	int 		i, j, irand;
@@ -274,21 +280,21 @@ void GiveItemToTrader(aref ch)
 	switch (merType)
 	{
 		case "potion" 		: // лекарства и травы + обереги
-			AddItems(ch, "mineral17", 	Rand(1) + 2);	
-			AddItems(ch, "potion1", 	Rand(8) + 1);
+			AddItems(ch, "mineral17", RandByPersonRank(1) + 2);
+			AddItems(ch, "potion1", RandByPersonRank(8) + 1);
 			if (ch.id == "Merdok")
 			{
-				AddItems(ch, "potion2", drand(2)+1);
-				AddItems(ch, "potion3", drand(2)+1);
-				AddItems(ch, "potion4", drand(2)+1);
-				AddItems(ch, "potion5", drand(2)+1);
+				AddItems(ch, "potion2", RandByPersonRank(2)+1);
+				AddItems(ch, "potion3", RandByPersonRank(2)+1);
+				AddItems(ch, "potion4", RandByPersonRank(2)+1);
+				AddItems(ch, "potion5", RandByPersonRank(2)+1);
 			}
 			else
 			{
 				irand = rand(12);
 				if(irand == 1)
 				{
-					AddItems(ch,"potion2", Rand(3) + 1);
+					AddItems(ch,"potion2", RandByPersonRank(3) + 1);
 				}
 				irand = rand(10);
 				if(irand == 1)
@@ -299,34 +305,34 @@ void GiveItemToTrader(aref ch)
 				irand = rand(8);
 				if(irand == 1)
 				{
-					AddItems(ch, "potion3", Rand(3) + 1);
+					AddItems(ch, "potion3", RandByPersonRank(3) + 1);
 				}
 		
 				irand = rand(6);
 				if(irand == 1)
 				{
-					AddItems(ch, "potion4", Rand(1) + 1);
+					AddItems(ch, "potion4", RandByPersonRank(1) + 1);
 				}
 		
 				irand = rand(3);
 				if(irand == 1)
 				{
-					AddItems(ch, "potion5", Rand(5) + 1);
+					AddItems(ch, "potion5", RandByPersonRank(5) + 1);
 				}	
 			}
 			irand = rand(5);
 			if(irand == 2)
 			{
-				AddItems(ch,"potionrum", Rand(3) + 2);
+				AddItems(ch,"potionrum", RandByPersonRank(3) + 2);
 			}
 			
 			irand = rand(10); // пропишем тетра-гидро-каннабинолы :)
-			if(irand == 0 ) AddItems(ch, "cannabis1", Rand(1) + 1);
-			if(irand == 2 ) AddItems(ch, "cannabis2", Rand(1) + 1);
-			if(irand == 4 ) AddItems(ch, "cannabis3", Rand(1) + 1);
-			if(irand == 6 ) AddItems(ch, "cannabis4", Rand(1) + 1);
-			if(irand == 8 ) AddItems(ch, "cannabis5", Rand(1) + 1);
-			if(irand == 10) AddItems(ch, "cannabis6", Rand(1) + 1);
+			if(irand == 0 ) AddItems(ch, "cannabis1", RandByPersonRank(1) + 1);
+			if(irand == 2 ) AddItems(ch, "cannabis2", RandByPersonRank(1) + 1);
+			if(irand == 4 ) AddItems(ch, "cannabis3", RandByPersonRank(1) + 1);
+			if(irand == 6 ) AddItems(ch, "cannabis4", RandByPersonRank(1) + 1);
+			if(irand == 8 ) AddItems(ch, "cannabis5", RandByPersonRank(1) + 1);
+			if(irand == 10) AddItems(ch, "cannabis6", RandByPersonRank(1) + 1);
 			// рецепты
 			irand = drand(320); // 5% веро€тности
 			if(irand == 1 ) AddItems(ch, "recipe_potion2", 1);
@@ -348,39 +354,39 @@ void GiveItemToTrader(aref ch)
 		break;
 		
 		case "veteran" 		: // скоб€ные издели€
-			AddItems(ch, "mineral1", 	Rand(3) + 2);	
-			AddItems(ch, "mineral2", 	Rand(1) + 1);	
+			AddItems(ch, "mineral1", RandByPersonRank(3) + 2);
+			AddItems(ch, "mineral2", RandByPersonRank(1) + 1);
 			
 			irand = drand(5);
-			if(irand == 1) AddItems(ch, "mineral3", 	Rand(4) + 5);
-			if(irand == 2) AddItems(ch, "mineral5", 	Rand(1) + 1);
+			if(irand == 1) AddItems(ch, "mineral3", RandByPersonRank(4) + 5);
+			if(irand == 2) AddItems(ch, "mineral5", RandByPersonRank(1) + 1);
 			
 			irand = drand(6);
-			if(irand == 3) AddItems(ch, "mineral6", 	Rand(2) + 1);
-			if(irand == 4) AddItems(ch, "mineral7", 	Rand(2) + 1);				
-			if(irand == 5) AddItems(ch, "mineral9", 	Rand(2) + 1);
-			if(irand == 6) AddItems(ch, "mineral10", 	Rand(2) + 1);
+			if(irand == 3) AddItems(ch, "mineral6", RandByPersonRank(2) + 1);
+			if(irand == 4) AddItems(ch, "mineral7", RandByPersonRank(2) + 1);
+			if(irand == 5) AddItems(ch, "mineral9", RandByPersonRank(2) + 1);
+			if(irand == 6) AddItems(ch, "mineral10", RandByPersonRank(2) + 1);
 
 			irand = drand(4);
-			if(irand == 0) AddItems(ch, "mineral13", 	Rand(1) + 1);		
-			if(irand == 1) AddItems(ch, "mineral15", 	Rand(1) + 1);
-			if(irand == 2) AddItems(ch, "mineral16", 	Rand(1) + 1);
+			if(irand == 0) AddItems(ch, "mineral13", RandByPersonRank(1) + 1);
+			if(irand == 1) AddItems(ch, "mineral15", RandByPersonRank(1) + 1);
+			if(irand == 2) AddItems(ch, "mineral16", RandByPersonRank(1) + 1);
 			
 			irand = drand(8);
-			if(irand == 1) AddItems(ch, "mineral18", 	Rand(1) + 1);
-			if(irand == 8) AddItems(ch, "mineral19", 	Rand(1) + 1);
-			if(irand == 5) AddItems(ch, "mineral20", 	Rand(1) + 1);
+			if(irand == 1) AddItems(ch, "mineral18", RandByPersonRank(1) + 1);
+			if(irand == 8) AddItems(ch, "mineral19", RandByPersonRank(1) + 1);
+			if(irand == 5) AddItems(ch, "mineral20", RandByPersonRank(1) + 1);
 			
 			irand = drand(9);
-			if(irand == 9) AddItems(ch, "mineral21", 	Rand(1) + 1);
-			if(irand == 7) AddItems(ch, "mineral22", 	Rand(5) + 2);
-			if(irand == 5) AddItems(ch, "mineral23", 	Rand(12) + 3);
-			if(irand == 3) AddItems(ch, "mineral24", 	Rand(1) + 1);
+			if(irand == 9) AddItems(ch, "mineral21", RandByPersonRank(1) + 1);
+			if(irand == 7) AddItems(ch, "mineral22", RandByPersonRank(5) + 2);
+			if(irand == 5) AddItems(ch, "mineral23", RandByPersonRank(12) + 3);
+			if(irand == 3) AddItems(ch, "mineral24", RandByPersonRank(1) + 1);
 			
 			irand = drand(15);
-			if(irand == 15)AddItems(ch, "mineral25", 	Rand(1) + 2);
-			if(irand == 5) AddItems(ch, "mineral26", 	Rand(1) + 3);
-			if(irand == 7) AddItems(ch, "mineral33", 	Rand(1) + 1);
+			if(irand == 15)AddItems(ch, "mineral25", RandByPersonRank(1) + 2);
+			if(irand == 5) AddItems(ch, "mineral26", RandByPersonRank(1) + 3);
+			if(irand == 7) AddItems(ch, "mineral33", RandByPersonRank(1) + 1);
 			if(irand == 9) AddItems(ch, "mineral35", 	1);
 			
 			// амулеты
@@ -391,9 +397,9 @@ void GiveItemToTrader(aref ch)
 		break;
 		
 		case "armourer": // оружие и боеприпасы
-			AddItems(ch, "bullet", 		Rand(20) + 10);	
-			AddItems(ch, "grapeshot", 	Rand(5) + 5);    
-			AddItems(ch, "gunpowder", 	Rand(10) + 5); // Warship. ѕорох
+			AddItems(ch, "bullet", RandByPersonRank(20) + 10);
+			AddItems(ch, "grapeshot", RandByPersonRank(5) + 5);
+			AddItems(ch, "gunpowder", RandByPersonRank(10) + 5); // Warship. ѕорох
 			// трубы
 			irand = drand(10);
 			if(irand == 1) AddItems(ch, "spyglass1", 1);
@@ -401,7 +407,7 @@ void GiveItemToTrader(aref ch)
 			if(irand == 1 && rank >=6) AddItems(ch, "spyglass2", 1); // fix 160912
 			irand = drand(4);
 			// пистоли
-			if(irand == 1) AddItems(ch, "pistol1", Rand(2) + 1);
+			if(irand == 1) AddItems(ch, "pistol1", RandByPersonRank(2) + 1);
 			if(rank >= 10 && rand(10) == 1)
 			{
 				if(irand == 1) AddItems(ch, "pistol2", Rand(1) + 1);
@@ -489,9 +495,9 @@ void GiveItemToTrader(aref ch)
 			irand = drand(4);
 			if(irand == 1) AddItems(ch, "potionwine", drand(3));
 			irand = drand(5);
-			if(irand == 0) AddItems(ch, "jewelry45", drand(2)+1);
-			if(irand == 1) AddItems(ch, "jewelry48", drand(2)+1);
-			if(irand == 2) AddItems(ch, "jewelry46", drand(2)+1);
+			if(irand == 0) AddItems(ch, "jewelry45", RandByPersonRank(2)+1);
+			if(irand == 1) AddItems(ch, "jewelry48", RandByPersonRank(2)+1);
+			if(irand == 2) AddItems(ch, "jewelry46", RandByPersonRank(2)+1);
 			if(irand == 3) AddItems(ch, "jewelry43", 1);
 			if(irand == 4) AddItems(ch, "jewelry41", 1);
 			if(irand == 5) AddItems(ch, "jewelry40", 1);
@@ -523,9 +529,9 @@ void GiveItemToTrader(aref ch)
 		break;	
 		
 		case "indian" 		: // индейские артефакты
-			AddItems(ch, "mineral4", 	Rand(2) + 1);
-			AddItems(ch, "mineral11", 	Rand(4) + 7);
-			AddItems(ch, "mineral12", 	Rand(3) + 7);		
+			AddItems(ch, "mineral4", RandByPersonRank(2) + 1);
+			AddItems(ch, "mineral11", RandByPersonRank(4) + 7);
+			AddItems(ch, "mineral12", RandByPersonRank(3) + 7);
 			irand = rand(10);
 			if(irand == 7) AddItems(ch, "mineral31", 	1);				
 			irand = rand(10);
@@ -560,14 +566,14 @@ void GiveItemToTrader(aref ch)
 		
 			AddItems(ch, "gold_dublon", Rand(USURER_MAX_DUBLONS - USURER_MIN_DUBLONS) + USURER_MIN_DUBLONS); // дублоны
 			irand = rand(2);
-			if(irand == 1) AddItems(ch, "chest_open", Rand(1) + 1); // пустые сундуки
+			if(irand == 1) AddItems(ch, "chest_open", RandByPersonRank(1) + 1); // пустые сундуки
 			
-			AddItems(ch, "jewelry1", Rand(4) + 1);
-			AddItems(ch, "jewelry2", Rand(4) + 1);
-			AddItems(ch, "jewelry3", Rand(4) + 1);
-			AddItems(ch, "jewelry4", Rand(4) + 1);
-			AddItems(ch, "jewelry5", Rand(4) + 1);
-			AddItems(ch, "jewelry6", Rand(4) + 1);
+			AddItems(ch, "jewelry1", RandByPersonRank(4) + 1);
+			AddItems(ch, "jewelry2", RandByPersonRank(4) + 1);
+			AddItems(ch, "jewelry3", RandByPersonRank(4) + 1);
+			AddItems(ch, "jewelry4", RandByPersonRank(4) + 1);
+			AddItems(ch, "jewelry5", RandByPersonRank(4) + 1);
+			AddItems(ch, "jewelry6", RandByPersonRank(4) + 1);
 			
 			irand = rand(20);
 			if(irand == 1) AddItems(ch, "jewelry7", 1);
@@ -590,25 +596,25 @@ void GiveItemToTrader(aref ch)
 			irand = rand(20);
 			if(irand == 1) AddItems(ch, "jewelry16", 1);
 			irand = rand(10);
-			if(irand == 1) AddItems(ch, "jewelry17", Rand(4) + 1);
+			if(irand == 1) AddItems(ch, "jewelry17", RandByPersonRank(4) + 1);
 			irand = rand(10);
-			if(irand == 1) AddItems(ch, "jewelry18", Rand(4) + 1);
+			if(irand == 1) AddItems(ch, "jewelry18", RandByPersonRank(4) + 1);
 			irand = rand(10);			
-			if(irand == 1) AddItems(ch, "jewelry19", Rand(4) + 1);
+			if(irand == 1) AddItems(ch, "jewelry19", RandByPersonRank(4) + 1);
 			irand = rand(10);			
-			if(irand == 1) AddItems(ch, "jewelry20", Rand(4) + 1);
+			if(irand == 1) AddItems(ch, "jewelry20", RandByPersonRank(4) + 1);
 			irand = rand(10);			
-			if(irand == 1) AddItems(ch, "jewelry21", Rand(4) + 1);
+			if(irand == 1) AddItems(ch, "jewelry21", RandByPersonRank(4) + 1);
 			irand = rand(10);			
-			if(irand == 1) AddItems(ch, "jewelry22", Rand(4) + 1);
+			if(irand == 1) AddItems(ch, "jewelry22", RandByPersonRank(4) + 1);
 			irand = rand(10);			
-			if(irand == 1) AddItems(ch, "jewelry23", Rand(4) + 1);
+			if(irand == 1) AddItems(ch, "jewelry23", RandByPersonRank(4) + 1);
 		break;
 		
 		case "lightman": //Jason - смотрители ма€ков
-			AddItems(ch, "jewelry52", 	dRand(8)+7);	
-			AddItems(ch, "jewelry53", 	dRand(15)+15);
-			AddItems(ch, "jewelry8", 	dRand(3));
+			AddItems(ch, "jewelry52", RandByPersonRank(8)+7);
+			AddItems(ch, "jewelry53", RandByPersonRank(15)+15);
+			AddItems(ch, "jewelry8", RandByPersonRank(3));
 			
 			irand = drand(130);
 			if(irand == 7) AddItems(ch, "indian_1", 1);
@@ -658,48 +664,48 @@ void GiveItemToTrader(aref ch)
 		break;
 		
 		case "minentown": //Jason - торговец на золотом руднике
-			AddItems(ch, "jewelry5", 	dRand(30)+20);	
-			AddItems(ch, "jewelry6", 	dRand(45)+30);
+			AddItems(ch, "jewelry5", RandByPersonRank(30)+20);
+			AddItems(ch, "jewelry6", RandByPersonRank(45)+30);
 			AddItems(ch, "bullet", 		Rand(20) + 20);	
 			AddItems(ch, "grapeshot", 	Rand(10) + 10);    
 			AddItems(ch, "gunpowder", 	Rand(20) + 10);
 			
 			irand = drand(5);
-			if(irand == 1) AddItems(ch, "jewelry10", dRand(7)+3));
-			if(irand == 3) AddItems(ch, "jewelry14", 1+rand(4));
-			if(irand == 5) AddItems(ch, "jewelry18", 1+rand(4));
+			if(irand == 1) AddItems(ch, "jewelry10", RandByPersonRank(7)+3));
+			if(irand == 3) AddItems(ch, "jewelry14", 1 + RandByPersonRank(4));
+			if(irand == 5) AddItems(ch, "jewelry18", 1 + RandByPersonRank(4));
 			irand = drand(3);
-			if(irand == 0) AddItems(ch, "jewelry13", dRand(5)+3));
-			if(irand == 1) AddItems(ch, "jewelry16", 1+rand(4));
-			if(irand == 2) AddItems(ch, "jewelry20", 1+rand(4));
+			if(irand == 0) AddItems(ch, "jewelry13", RandByPersonRank(5)+3));
+			if(irand == 1) AddItems(ch, "jewelry16", 1 + RandByPersonRank(4));
+			if(irand == 2) AddItems(ch, "jewelry20", 1 + RandByPersonRank(4));
 			irand = drand(4);
-			if(irand == 0) AddItems(ch, "jewelry12", dRand(5)+3));
-			if(irand == 2) AddItems(ch, "jewelry17", 1+rand(4));
-			if(irand == 4) AddItems(ch, "jewelry21", 1+rand(4));
+			if(irand == 0) AddItems(ch, "jewelry12", RandByPersonRank(5)+3));
+			if(irand == 2) AddItems(ch, "jewelry17", 1 + RandByPersonRank(4));
+			if(irand == 4) AddItems(ch, "jewelry21", 1 + RandByPersonRank(4));
 			irand = drand(6);
-			if(irand == 1) AddItems(ch, "jewelry15", 1+rand(4));
-			if(irand == 3) AddItems(ch, "jewelry22", 1+rand(4));
-			if(irand == 6) AddItems(ch, "jewelry23", 1+rand(4));
+			if(irand == 1) AddItems(ch, "jewelry15", 1 + RandByPersonRank(4));
+			if(irand == 3) AddItems(ch, "jewelry22", 1 + RandByPersonRank(4));
+			if(irand == 6) AddItems(ch, "jewelry23", 1 + RandByPersonRank(4));
 			irand = drand(10);
-			if(irand == 0) AddItems(ch, "jewelry1", 1+rand(15));
-			if(irand == 3) AddItems(ch, "jewelry2", 1+rand(15));
-			if(irand == 6) AddItems(ch, "jewelry3", 1+rand(15));
-			if(irand == 9) AddItems(ch, "jewelry4", 1+rand(15));
+			if(irand == 0) AddItems(ch, "jewelry1", 1 + RandByPersonRank(15));
+			if(irand == 3) AddItems(ch, "jewelry2", 1 + RandByPersonRank(15));
+			if(irand == 6) AddItems(ch, "jewelry3", 1 + RandByPersonRank(15));
+			if(irand == 9) AddItems(ch, "jewelry4", 1 + RandByPersonRank(15));
 			if(irand == 10) AddItems(ch, "jewelry9", 1);
 		break;
 		
 		case "LSC_trader": //Jason - торговец в LSC. ¬сегда есть: лечилки, пули, порох, картечь. ќстальное - как рандом л€жет. ћогут быть старшие лечилки, амулеты, группа jewelry, ’ќ и ќќ, доспехи.
 			// зель€:
-			AddItems(ch, "potion1", 	dRand(5)+1);	
+			AddItems(ch, "potion1", RandByPersonRank(5)+1);
 			AddItems(ch, "potion2", 	dRand(2));
 			AddItems(ch, "potion3", 	dRand(2));
 			AddItems(ch, "potion4", 	dRand(1));	
 			AddItems(ch, "potionrum", 	dRand(1));    
 			AddItems(ch, "potionwine", 	dRand(1));
 			// боеприпасы:
-			AddItems(ch, "bullet", 		dRand(12)+5);
-			AddItems(ch, "grapeshot", 	dRand(8)+5);
-			AddItems(ch, "GunPowder", 	dRand(10)+5);
+			AddItems(ch, "bullet", RandByPersonRank(12)+5);
+			AddItems(ch, "grapeshot", RandByPersonRank(8)+5);
+			AddItems(ch, "GunPowder", RandByPersonRank(10)+5);
 			//вс€кий металлолом
 			irand = drand(6);
 			if(irand == 0) GenerateAndAddItems(ch, "blade_05", rand(1));
@@ -788,8 +794,8 @@ void GiveItemToTrader(aref ch)
 		break;
 		
 		case "LSC_indian": //Jason: индеец в LSC
-			AddItems(ch, "jewelry53", 	dRand(4)+1);	
-			AddItems(ch, "jewelry52", 	dRand(2)+1);
+			AddItems(ch, "jewelry53", RandByPersonRank(4)+1);
+			AddItems(ch, "jewelry52", RandByPersonRank(2)+1);
 			AddItems(ch, "jewelry8", 	dRand(2));
 			
 			irand = drand(6);
@@ -817,17 +823,17 @@ void GiveItemToTrader(aref ch)
 		
 		case "cemeteryman": //Jason: смотрители кладбищ
 			irand = drand(1);
-			if(irand == 0) AddItems(ch, "cannabis1", 1+(rand(3)));
-			if(irand == 1) AddItems(ch, "cannabis2", 1+(rand(3)));
+			if(irand == 0) AddItems(ch, "cannabis1", 1+(RandByPersonRank(3)));
+			if(irand == 1) AddItems(ch, "cannabis2", 1+(RandByPersonRank(3)));
 			irand = drand(3);
-			if(irand == 0) AddItems(ch, "cannabis3", 1+(rand(3)));
-			if(irand == 1) AddItems(ch, "cannabis4", 1+(rand(3)));
-			if(irand == 2) AddItems(ch, "cannabis5", 1+(rand(3)));
-			if(irand == 3) AddItems(ch, "cannabis6", 1+(rand(3)));
+			if(irand == 0) AddItems(ch, "cannabis3", 1+(RandByPersonRank(3)));
+			if(irand == 1) AddItems(ch, "cannabis4", 1+(RandByPersonRank(3)));
+			if(irand == 2) AddItems(ch, "cannabis5", 1+(RandByPersonRank(3)));
+			if(irand == 3) AddItems(ch, "cannabis6", 1+(RandByPersonRank(3)));
 			irand = drand(4);
-			if(irand == 0) AddItems(ch, "jewelry12", 1+(rand(1)));
-			if(irand == 1) AddItems(ch, "jewelry13", 1+(rand(1)));
-			if(irand == 2) AddItems(ch, "jewelry22", 1+(rand(1)));
+			if(irand == 0) AddItems(ch, "jewelry12", 1+(RandByPersonRank(1)));
+			if(irand == 1) AddItems(ch, "jewelry13", 1+(RandByPersonRank(1)));
+			if(irand == 2) AddItems(ch, "jewelry22", 1+(RandByPersonRank(1)));
 			irand = drand(10);
 			if(irand == 0) AddItems(ch, "blade_03", 1);
 			if(irand == 3) AddItems(ch, "blade_05", 1);
@@ -839,12 +845,12 @@ void GiveItemToTrader(aref ch)
 			irand = drand(7);
 			if(irand == 0) AddItems(ch, "pistol1", 1);
 			irand = drand(5);
-			if(irand == 0) AddItems(ch, "bullet", 1+(rand(10)));
-			if(irand == 1) AddItems(ch, "grapeshot", 1+(rand(10)));
-			if(irand == 2) AddItems(ch, "cartridge", 1+(rand(5)));
-			if(irand == 3) AddItems(ch, "gunpowder", 1+(rand(10)));
-			AddItems(ch, "mineral"+(drand(11)+1), 1);
-			AddItems(ch, "mineral"+(drand(13)+13), 1);
+			if(irand == 0) AddItems(ch, "bullet", 1+(RandByPersonRank(10)));
+			if(irand == 1) AddItems(ch, "grapeshot", 1+(RandByPersonRank(10)));
+			if(irand == 2) AddItems(ch, "cartridge", 1+(RandByPersonRank(5)));
+			if(irand == 3) AddItems(ch, "gunpowder", 1+(RandByPersonRank(10)));
+			AddItems(ch, "mineral"+(RandByPersonRank(11)+1), 1);
+			AddItems(ch, "mineral"+(RandByPersonRank(13)+13), 1);
 		break;
 	}	
 }
