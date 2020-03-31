@@ -53,8 +53,7 @@ int Fantom_GenerateEncounterExt(string sGroupName, object oResult, int iEType, i
 	return iNumWarShips + iNumMerchantShips;
 }
 
-int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string sGroupName, string sFantomType, int iEncounterType, int iNation)
-{
+int Fantom_GetRandomShipType(int iClassMin, int iClassMax, string sShipType, int iNation) {
 	int iShips[50];
 	int i, iShipsNum;
 	iShipsNum = 0;
@@ -67,37 +66,43 @@ int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string
 		object rShip = GetShipByType(i);
 		if (!CheckAttribute(rship, "class"))
 		{
-			trace ("bad ship is: " + rship.name);
+			trace("bad ship is: " + rship.name);
 		}
 		int iClass = MakeInt(rShip.Class);
-		
+
 		if (iClass > iClassMin) { continue; }
 		if (iClass < iClassMax) { continue; }
 		if (sti(rShip.CanEncounter) != true) { continue; }
 		if (sti(rShip.Type.(sShipType)) != true) { continue; }
 
 		bOk = false;
-		if(CheckAttribute(rShip, "nation"))
+		if (CheckAttribute(rShip, "nation"))
 		{
 			makearef(aNation, rShip.nation);
 			int q = GetAttributesNum(aNation);
-			for(int j = 0; j < q; j++)
+			for (int j = 0; j < q; j++)
 			{
-				sAttr = GetAttributeName(GetAttributeN(aNation, j)); 
-				if(GetNationTypeByName(sAttr) == iNation && rShip.nation.(sAttr) == true ) bOk = true;
+				sAttr = GetAttributeName(GetAttributeN(aNation, j));
+				if (GetNationTypeByName(sAttr) == iNation && rShip.nation.(sAttr) == true) bOk = true;
 			}
-		}	
-		if(!bOk) { continue; }
+		}
+		if (!bOk) { continue; }
 		iShips[iShipsNum] = i;
 		iShipsNum++;
 	}
-	if (iShipsNum == 0 ) 
+	if (iShipsNum == 0)
 	{
 		Trace("Can't find ship type '" + sShipType + "' with ClassMin = " + iClassMin + " and ClassMax = " + iClassMax);
 		return INVALID_SHIP_TYPE;
 	}
+	return iShips[rand(iShipsNum - 1)];
+}
 
-	int iBaseShipType = iShips[rand(iShipsNum - 1)];
+int Fantom_GetShipTypeExt(int iClassMin, int iClassMax, string sShipType, string sGroupName, string sFantomType, int iEncounterType, int iNation)
+{
+	string sAttr;
+
+	int iBaseShipType = Fantom_GetRandomShipType(iClassMin, iClassMax, sShipType, iNation);
 
 	ref rFantom = GetFantomCharacter(iNumFantoms);
 

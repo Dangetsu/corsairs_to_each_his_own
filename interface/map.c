@@ -269,6 +269,11 @@ void wdmRecalcReloadToSea()
 		}
 	}
 	//Log_TestInfo("isShipEncounterType :" + isShipEncounterType);
+	int iMerchantClassMin = sti(rEncounter.iMerchantClassMin); 
+	totalInfo = totalInfo + " торговец от " + iMerchantClassMin + " ранга";
+	int iWarClassMin = sti(rEncounter.iWarClassMin);
+	totalInfo = totalInfo + " боевой от " + iWarClassMin + " ранга";
+
 	
 	if (isShipEncounterType > 1)
 	{

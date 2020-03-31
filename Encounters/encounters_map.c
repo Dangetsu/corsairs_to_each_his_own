@@ -254,6 +254,16 @@ bool GenerateMapEncounter_WriteNumShips(ref rEncounter, int iEncounterType, int 
 		DeleteAttribute(rEncounter, "NumWarShips");
 	}
 
+	int	iWarClassMax, iWarClassMin, iMerchantClassMax, iMerchantClassMin;
+
+	int iRank = sti(pchar.Rank);
+	Encounter_GetClassesFromRank(iEncounterType, iRank, &iMerchantClassMin, &iMerchantClassMax, &iWarClassMin, &iWarClassMax);
+
+	rEncounter.iMerchantClassMin = iMerchantClassMin;
+	rEncounter.iMerchantClassMax = iMerchantClassMax;
+	rEncounter.iWarClassMin		 = iWarClassMin;
+	rEncounter.iWarClassMax	     = iWarClassMax;
+
 	return true;
 }
 
